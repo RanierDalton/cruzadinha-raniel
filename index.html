@@ -196,22 +196,22 @@ footer p{
     var special_words = ['CPU', 'ULA', 'Registradores', 'RAM', 'ROM', 'EPROM', 'FLASH', 'Memória de Massa', 'DMA', 'CS', 'Adress Bus', 'Data Bus', 'I5', 'I7', 'Dual Core', 'Quad Core'];
 
 var questions_list = [
-    'É o cérebro do Computador, se destaca principalmente por sua capacidade de processamento de dados', // CPU
-    'É uma das duas partes principais de uma CPU, que fica responsável pelos cálculos lógicos e matemáticos', // ULA
-    'Se encontra no topo da hierarquia de memória, São constituidos por pequenas memórias internas alocadas na CPU, com objetivo de armazenar dados temporários', // Registradores
-    'Memória responsável pelo armazenamento temporário de dados que o processador está usando no momento', // RAM
-    'Memória permanente do computador, usada para armazenar dados que não se apagam quando o dispositivo é desligado, apenas de leitura', // ROM
-    'Tipo de memória não-volátil que permite a gravação ou regravação de dados e programas. Ao contrário da memória RAM, mantém os dados armazenados mesmo sem energia.', // EPROM
-    'Memória usada em dispositivos de armazenamento como pendrives, cartões SD e SSDs, que pode ser regravada várias vezes.', // FLASH
-    'Tipo de memória usado para armazenar grandes quantidades de dados de forma permanente, como discos rígidos (HD), SSDs e CDs', // Memória de Massa
-    'Método que acelera as operações que envolvem a memória e poupa o processador. Ele permite que um dispositivo de entrada e saída envie ou receba dados diretamente da memória principal, ignorando a CPU.', // DMA
-    'É um barramento de componentes de Entrada e Saída externos (periféricos, memórias etc) conectados ao Computador.', // CS
-    'Indica o local de armazenamento dos dados e gerencia seus caminhos para onde devem ser enviados.', //Adress Bus
-    'Realiza conexões, permitindo que os dados fluam entre os dispositivos.', //Data Bus
-    'Processador fabricado pela Intel fabricado em 2009, geralmente possui de seis a oito núcleos', //I5
-    'Processador fabricado pela Intel fabricado em 2008, possui mais poder de processamento', //  I7
-    'Processadores que possue até dois núcleos de processamento, dividindo as tarefas entre si', // Dual Core
-    'Processadores com o dobro da capacidade de processamento em relação ao DualCore, com aumento para 4 núcleos' //Quad Core
+    'É o cérebro do Computador, se destaca principalmente por sua capacidade de processamento de dados:', // CPU
+    'É uma das duas partes principais de uma CPU, que fica responsável pelos cálculos lógicos e matemáticos:', // ULA
+    'É constituido por pequenas memórias internas alocadas na CPU, com objetivo de armazenar dados temporariamente:', // Registradores
+    'Memória responsável pelo armazenamento temporário de dados que o processador está usando no momento:', // RAM
+    'Memória usada para armazenar dados que não se apagam, mesmo quando o dispositivo é desligado:', // ROM
+    'Memória que permite a gravação ou regravação de dados e programas. Ao contrário da memória RAM, mantém os dados armazenados mesmo sem energia:', // EPROM
+    'Memória usada em dispositivos de armazenamento como pendrives, cartões SD e SSDs, que pode ser regravada várias vezes:', // FLASH
+    'Tipo de memória usado para armazenar grandes quantidades de dados de forma permanente, como discos rígidos (HD), SSDs e CDs:', // Memória de Massa
+    'Método que acelera as operações que envolvem a memória e poupa o processador. Permite que um dispositivo de entrada e saída envie ou receba dados diretamente da memória principal, ignorando a CPU:', // DMA
+    'É um barramento de componentes de Entrada e Saída externos (periféricos, memórias etc) conectados ao Computador:', // CS
+    'Indica o local de armazenamento dos dados e gerencia seus caminhos para onde devem ser enviados:', //Adress Bus
+    'Realiza conexões, permitindo que os dados fluam entre os dispositivos:', //Data Bus
+    'Processador da Intel, sendo fabricado desde 2009, geralmente possui de seis a oito núcleos:', //I5
+    'Processador da Intel, sendo fabricado desde 2008, possui mais poder de processamento:', //  I7
+    'Processadores que possue até dois núcleos de processamento, dividindo as tarefas entre si:', // Dual Core
+    'Processadores com o dobro da capacidade de processamento em relação ao Dual Core, com aumento para 4 núcleos' //Quad Core
 ];
 
 var filledCell = [2, 20, 38, 133, 134, 135, 59, 77, 95, 113, 131, 149,
@@ -227,7 +227,7 @@ var firstIndex= [2, 133, 59, 59, 272, 236, 116, 27, 203, 312, 270, 187, 117, 113
 var word = {
 
     word1: {
-        letter: special_words[0].split(''),
+        letter: special_words[0].toUpperCase().split(''),
         position: [2, 20, 38],
         write: function () {
 
@@ -241,7 +241,7 @@ var word = {
         }
     },
     word2: {
-        letter: special_words[1].split(''),
+        letter: special_words[1].toUpperCase().split(''),
         position: [133, 134, 135],
         write: function () {
             for (i in word.word2.letter) {
@@ -255,7 +255,7 @@ var word = {
         }
     },
     word3: {
-        letter: special_words[2].split(''),
+        letter: special_words[2].toUpperCase().split(''),
         position: [59, 77, 95, 113, 131, 149, 167, 185, 203, 221, 239, 257, 275],
         write: function () {
             for (i in word.word3.letter) {
@@ -351,7 +351,7 @@ var word = {
         }
     },
     word10: {
-        letter: special_words[9].split(''),
+        letter: special_words[9].toUpperCase().split(''),
         position: [312, 313],
         write: function () {
             for (i in word.word10.letter) {
@@ -528,10 +528,7 @@ function gameSequence() {
             destroyGrid();
         }, 3000);
     }
-
-
 }
-
 
 function pontuation() {
     div_information.style.display = 'block';
@@ -586,15 +583,18 @@ function paintCells() {
 
 function verify() {
     var answer = input_answer.value;
-
+    
     if (answer != '') {
-        // answer = answer.toLowerCase();
-        if (answer == special_words[cont_correctAnswer]) {
+        answer = answer.trim();
+        answer = answer.toLowerCase();
+        if (answer == special_words[cont_correctAnswer].toLocaleLowerCase()) {
+            div_verifiedAnswer.classList.remove('wrongAnswer');
             div_verifiedAnswer.classList.add('correctAnswer');
             div_verifiedAnswer.innerHTML = '<br>Resposta Correta!';
             cont_correctAnswer++;
         }
         else {
+            div_verifiedAnswer.classList.remove('correctAnswer');
             div_verifiedAnswer.classList.add('wrongAnswer');
             div_verifiedAnswer.innerHTML = '<br>Resposta Incorreta, tente novamente';
         }
